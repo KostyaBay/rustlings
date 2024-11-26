@@ -20,7 +20,9 @@ mod tests {
     fn move_semantics2() {
         let vec0 = vec![22, 44, 66];
 
-        let vec1 = fill_vec(vec0);
+        // added clone() after 'vec0' into 'fil_vec' so that we use a clone of 'vec0'
+        // and don't use the original 'vec0' since we already used 'vec0'
+        let vec1 = fill_vec(vec0.clone());
 
         assert_eq!(vec0, [22, 44, 66]);
         assert_eq!(vec1, [22, 44, 66, 88]);

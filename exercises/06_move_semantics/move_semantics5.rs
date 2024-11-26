@@ -9,7 +9,8 @@ fn get_char(data: String) -> char {
 }
 
 // Should take ownership
-fn string_uppercase(mut data: &String) {
+fn string_uppercase(mut data: String) {
+    // expected &String, found String so remove the reference in the input
     data = data.to_uppercase();
 
     println!("{data}");
@@ -18,7 +19,9 @@ fn string_uppercase(mut data: &String) {
 fn main() {
     let data = "Rust is great!".to_string();
 
-    get_char(data);
+    // value 'data' will moved after this step
+    // so we need to clone for using 'data' in next steps
+    get_char(data.clone());
 
-    string_uppercase(&data);
+    string_uppercase(data);
 }
